@@ -9,7 +9,9 @@ import express from "express";
 import helmet from "helmet";
 import http from "http";
 import morgan from "morgan";
+import { basicAuth } from "./middlewares/basicAuth.middleware";
 import { authRouter } from "./routes/auth/auth.route";
+import { taskRouter } from "./routes/tasks/tasks.route";
 dotenv.config();
 const bootstrap = async () => {
   const app = express();
@@ -52,6 +54,7 @@ const bootstrap = async () => {
   });
   // Routes
   app.use("/api/auth/", authRouter);
+  app.use("/api/tasks/", basicAuth, taskRouter);
   // app.use("api", route);
   // Error handler
   app.use(globalErrorHandler);

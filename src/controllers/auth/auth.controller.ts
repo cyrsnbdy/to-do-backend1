@@ -64,16 +64,16 @@ export const login = async (req: Request, res: Response) => {
     throw new AppError("Incorrect Password.", 400);
   }
 
-  // Prevent login if account is already logged in
-  if (account.status === true) {
-    throw new AppError("Account is already logged in", 400);
-  }
+  // Remove status check - we don't care about status anymore
+  // Just return success - client will store the token
 
-  // Update account status to true (logged in)
-  // await updateStatus(email, true);
-
-  // Return success response with account data
-  res.status(200).json({ message: "Login successfully.", account });
+  // Return success response with account data (excluding password)
+  const { password: _, ...accountWithoutPassword } = account.toObject();
+  res.status(200).json({
+    message: "Login successfully.",
+    account: accountWithoutPassword,
+    // Optionally return a token if you want to implement token-based auth later
+  });
 };
 
 /**
@@ -81,25 +81,8 @@ export const login = async (req: Request, res: Response) => {
  * @route POST /api/auth/logout
  * @access Public
  */
+// controllers/auth/auth.controller.ts
 export const logout = async (req: Request, res: Response) => {
-  // const { email } = req.body;
-
-  // Find the account by email
-  // const account = await findAccountS({ email });
-
-  // // Throw error if account does not exist
-  // if (!account) {
-  //   throw new AppError("Account not found", 404);
-  // }
-
-  // // Prevent logout if account is already logged out
-  // if (account.status === false) {
-  //   throw new AppError("Account is already logged out", 400);
-  // }
-
-  // Update account status to false (logged out)
-  // await updateStatus(email, false);
-
   // Return success response
   res.status(200).json({ message: "User has successfully logged out." });
 };
