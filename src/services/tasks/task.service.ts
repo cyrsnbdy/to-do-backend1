@@ -13,7 +13,7 @@ export const createTask = async (taskData: {
 
 // Get all tasks for a specific user
 export const getUserTasks = async (userId: string) => {
-  return await Task.find({ userId }).sort({ createdAt: -1 });
+  return Task.find({ userId }).sort({ completed: 1, createdAt: -1 });
 };
 
 // Find task by description for a specific user

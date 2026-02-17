@@ -35,7 +35,7 @@ export const basicAuth = async (
     // Find the user by email
     const account = await findAccountS({ email });
     if (!account) {
-      throw new AppError("Account not found", 401);
+      throw new AppError("Account not founds", 401);
     }
 
     // Verify password

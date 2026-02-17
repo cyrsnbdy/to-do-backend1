@@ -49,7 +49,7 @@ export const addTask = async (req: AuthRequest, res: Response) => {
 
 export const getTasks = async (req: AuthRequest, res: Response) => {
   const userId = req.account?._id;
-
+  console.log("test");
   if (!userId) {
     throw new AppError("User not authenticated", 401);
   }

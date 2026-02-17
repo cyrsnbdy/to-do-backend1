@@ -14,9 +14,9 @@ export const taskRouter = Router();
 
 // Apply Basic Auth to all task routes
 
-taskRouter.post("/tasks", addTask); //
-taskRouter.get("/tasks", getTasks); //
-taskRouter.get("/tasks/:id", getTask); //
-taskRouter.put("/tasks/:id", updateTask); //
-taskRouter.delete("/tasks/:id", deleteTask);
-taskRouter.patch("/tasks/:id/toggle", toggleTaskStatus);
+taskRouter.post("/", addTask); //
+taskRouter.get("/", getTasks); //
+taskRouter.get("/:id", getTask); //
+taskRouter.put("/:id", updateTask); //
+taskRouter.delete("/:id", deleteTask);
+taskRouter.patch("/:id/toggle", toggleTaskStatus);
